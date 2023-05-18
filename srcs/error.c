@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: louisbrochard <louisbrochard@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 08:10:12 by louisbrocha       #+#    #+#             */
-/*   Updated: 2023/05/18 08:11:05 by louisbrocha      ###   ########.fr       */
+/*   Created: 2023/05/18 08:27:15 by louisbrocha       #+#    #+#             */
+/*   Updated: 2023/05/18 08:35:47 by louisbrocha      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "../includes/pipex.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+int    error_input(char *err)
+{
+    write(2, err, ft_strlen(err));
+    return (1);
+}
 
-// main.c
-
-#endif
+void   error_p(char *err)
+{
+    perror(err);
+    exit (1);
+}
