@@ -6,7 +6,7 @@
 /*   By: louisbrochard <louisbrochard@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 08:09:03 by louisbrocha       #+#    #+#             */
-/*   Updated: 2023/05/18 09:20:41 by louisbrocha      ###   ########.fr       */
+/*   Updated: 2023/05/20 10:58:04 by louisbrocha      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,16 @@ int main (int argc, char **argv, char **envp)
         error_p("Error : pipe\n");
     pipex.path = get_path(envp);
     pipex.cmd_paths = ft_split(pipex.path, ':');
-    printf("Tout roule là \n");
+	pipex.pid1 = fork();
+	if (pipex.pid1 == 0)
+		first_child(pipex, argv, envp);
+	pipex.pid2 = fork();
+	if (pipex.pid2 == 0)
+		second_child(pipex, argv, envp);
+	close_pipes(&pipex);
+	waitpid(pipex.pid1, NULL, 0);
+	waitpid(pipex.pid2, NULL, 0);
+	parent_free(&pipex);
     
     return (0);
 }

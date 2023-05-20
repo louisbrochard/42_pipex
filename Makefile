@@ -9,7 +9,7 @@ HEADER_SRCS	=	pipex.h
 HEADER_DIR	=	includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
-MPATH_SRCS	=	error.c main.c utils.c ft_split.c
+MPATH_SRCS	=	error_free.c main.c utils.c utils2.c ft_split.c child.c 
 MPATH_DIR	=	srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
