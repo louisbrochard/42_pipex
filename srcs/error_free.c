@@ -47,14 +47,14 @@ void	close_pipes(t_pipex *pipex)
 	close(pipex->tube[1]);
 }
 
-int    error_input(char *err)
+int	error_input(char *err)
 {
-    write(2, err, ft_strlen(err));
-    return (1);
+	write(2, err, ft_strlen(err));
+	return (1);
 }
 
-void   error_p(char *err)
+void	error_p(char *err)
 {
-    perror(err);
-    exit (1);
+	perror(err);
+	exit (1);
 }

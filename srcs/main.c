@@ -12,22 +12,22 @@
 
 #include "../includes/pipex.h"
 
-int main (int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-    t_pipex pipex;
+	t_pipex	pipex;
 
-    if (argc != 5)
-        return (error_input("Error: wrong number of arguments\n"));
-    pipex.infile = open(argv[1], O_RDONLY);
-    if (pipex.infile < 0)
-        error_p("Error: input file\n");
-    pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
-    if (pipex.outfile < 0)
-        error_p("Error: output file\n");
-    if(pipe(pipex.tube) < 0)
-        error_p("Error : pipe\n");
-    pipex.path = get_path(envp);
-    pipex.cmd_paths = ft_split(pipex.path, ':');
+	if (argc != 5)
+		return (error_input("Error: wrong number of arguments\n"));
+	pipex.infile = open(argv[1], O_RDONLY);
+	if (pipex.infile < 0)
+		error_p("Error: input file\n");
+	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+	if (pipex.outfile < 0)
+		error_p("Error: output file\n");
+	if (pipe(pipex.tube) < 0)
+		error_p("Error : pipe\n");
+	pipex.path = get_path(envp);
+	pipex.cmd_paths = ft_split(pipex.path, ':');
 	pipex.pid1 = fork();
 	if (pipex.pid1 == 0)
 		first_child(pipex, argv, envp);
@@ -38,6 +38,5 @@ int main (int argc, char **argv, char **envp)
 	waitpid(pipex.pid1, NULL, 0);
 	waitpid(pipex.pid2, NULL, 0);
 	parent_free(&pipex);
-    
-    return (0);
+	return (0);
 }

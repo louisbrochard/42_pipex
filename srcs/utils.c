@@ -51,9 +51,9 @@ int	ft_strncmp(const char *first, const char *second, size_t length)
 	return ((unsigned char)*first - (unsigned char)*second);
 }
 
-char    *get_path(char **envp)
+char	*get_path(char **envp)
 {
-    while (ft_strncmp("PATH", *envp, 4))
-        envp++;
-    return (*envp + 5);
+	while (ft_strncmp("PATH", *envp, 4))
+		envp++;
+	return (*envp + 5);
 }
